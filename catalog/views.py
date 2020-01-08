@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
 from catalog.models import Book, Author, Genre, BookInstance, Language
 
 # Create your views here.
