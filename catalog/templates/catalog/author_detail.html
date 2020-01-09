@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Library - {{ author.first_name }} {{ author.last_name }}</title>
+{% endblock %}
+
+{% block content %}
+<h1>Name: {{ author.first_name }} {{ author.last_name }}</h1>
+<p><strong>Birth:</strong> {{ author.date_of_birth }}</a></p> 
+<p><strong>Death:</strong> {{ author.date_of_death }}</a></p> 
+
+{% endblock %}
