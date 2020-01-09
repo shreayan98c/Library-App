@@ -28,3 +28,6 @@ def index(request):
 
 	# Render the HTML template index.html with the data in the context variable
 	return render(request, 'index.html', context=context)
+
+class BookListView(generic.ListView):
+	model = Book
