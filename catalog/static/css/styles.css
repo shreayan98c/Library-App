@@ -1,6 +1,12 @@
 .sidebar-nav
 {
 	margin-top: 20px;
-	padding: 0;
+	padding: 10px;
 	list-style: none;
+	border: 5px solid purple;
+}
+
+.contents
+{
+	padding-top: 20px;
 }

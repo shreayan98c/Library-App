@@ -7,9 +7,9 @@
 {% block content %}
 <h1>Author List</h1>
 {% if author_list %}
-<ul>
+<ul class="list-group">
   {% for author in author_list %}
-  <li>
+  <li class="list-group-item">
     <a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a> ({{author.date_of_birth}} to {{author.date_of_death}})
   </li>
   {% endfor %}
