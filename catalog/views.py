@@ -3,13 +3,14 @@ from django.urls import reverse
 from django.views import generic
 from catalog.models import Author
 from django.urls import reverse_lazy
-from catalog.forms import RenewBookForm
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from catalog.forms import RenewBookForm, NewUserForm
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required
 from catalog.models import Book, Author, Genre, BookInstance, Language
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 
@@ -41,6 +42,20 @@ def index(request):
 
 	# Render the HTML template index.html with the data in the context variable
 	return render(request, 'index.html', context=context)
+
+def register(request):
+	if request.method == "POST":
+		form = NewUserForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			login(request, user)
+			return redirect("index")
+		else:
+			for msg in form.error_messages:
+				print(msg)
+
+	form = NewUserForm
+	return render(request,"catalog/register.html",context={"form":form})
 
 class BookListView(generic.ListView):
 	model = Book
@@ -127,7 +142,6 @@ class BookUpdate(PermissionRequiredMixin, UpdateView):
 	model = Book
 	fields = '__all__'
 	permission_required = 'catalog.can_mark_returned'
-
 
 class BookDelete(PermissionRequiredMixin, DeleteView):
 	model = Book
