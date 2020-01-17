@@ -44,8 +44,8 @@ class Book(models.Model):
 							max_length=13, 
 							help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>',
 							validators=[RegexValidator(
-								regex=r'^(?:ISBN(?:-13)?:? )?(?=[0-9]{13}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)97[89][- ]?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9]$', 
-								message='Please enter a valid phone number')])
+								regex=r'[0-9]{13}', 
+								message='Please enter a valid ISBN number')])
 
 	# ManyToManyField used because genre can contain many books. Books can cover many genres.
 	# Genre class has already been defined so we can specify the object above.
