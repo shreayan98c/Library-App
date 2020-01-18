@@ -34,4 +34,6 @@ urlpatterns = [
     path('book/<int:pk>/update/', views.BookUpdate.as_view(), name='book_update'),
     path('book/<int:pk>/delete/', views.BookDelete.as_view(), name='book_delete'),
     path('accounts/register/', views.register, name='register'),
+    path('account/<int:pk>/', views.UserDetailView.as_view(), name='user_detail'),
+    path('account/<int:pk>/update/', views.UserUpdate.as_view(), name='user_update'),
 ]

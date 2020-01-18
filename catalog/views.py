@@ -3,14 +3,15 @@ from django.urls import reverse
 from django.views import generic
 from catalog.models import Author
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from catalog.forms import RenewBookForm, NewUserForm
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import permission_required
+from django.shortcuts import render, redirect, get_object_or_404
 from catalog.models import Book, Author, Genre, BookInstance, Language
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 # Create your views here.
 
@@ -56,6 +57,16 @@ def register(request):
 
 	form = NewUserForm
 	return render(request,"catalog/register.html",context={"form":form})
+
+class UserUpdate(UpdateView):
+	model = User
+	fields = ['first_name', 'last_name']
+	template_name = 'catalog/update_user.html'
+	success_url = reverse_lazy('index')
+
+class UserDetailView(generic.DetailView):
+	model = User
+	template_name = 'catalog/user_detail.html'
 
 class BookListView(generic.ListView):
 	model = Book

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Library - {{ user.first_name }} {{ user.last_name }}</title>
+{% endblock %}
+
+{% block content %}
+<h2>First Name: {{ user.first_name }}</h2>
+<h2>Surname: {{ user.last_name }}</h2>
+<h3>Email: {{ user.email }}</h3>
+<a href="../{{ user.id }}/update">Update details</a> <br>
+{% endblock %}

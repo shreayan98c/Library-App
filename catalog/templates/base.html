@@ -43,7 +43,7 @@
 					<li><a href="{% url 'books' %}">All Books</a></li>
 					<li><a href="{% url 'authors' %}">All Authors</a></li>
 					{% if user.is_authenticated %}
-					<li class="alert-success">User: {{ user.get_username }}</li>
+					<li class="alert-success"><a href="account/{{ user.id }}">User: {{ user.get_username }}</a></li>
 					<li><a href="{% url 'my-borrowed' %}">My Books</a></li>
 					{% else %}
 					<li><a href="{% url 'register' %}">Register</a></li>
